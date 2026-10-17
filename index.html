@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Abir Hoq — Freelance Web Designer</title>
+  <meta name="description" content="Portfolio of Abir Hoq — Freelance Web Designer based in Bangladesh. Fast, mobile-first websites tailored for local service businesses in the US, UK, and Canada.">
+  
+  <!-- Fonts: Anton / Bebas Neue for impactful condensed titles, Plus Jakarta Sans for clean body -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Decorative top scroll progress bar conforming to modern web guidance -->
+  <div id="scroll-progress-bar" aria-hidden="true"></div>
+
+  <!-- Loading Screen Overlay for smooth frame caching -->
+  <div id="loader" class="loader-container">
+    <div class="loader-content">
+      <div class="loader-brand">ABIR HOQ</div>
+      <div class="loader-spinner"></div>
+      <div class="loader-status">
+        <span class="loader-title">Loading Experience</span>
+        <span id="loader-percent" class="loader-percent">0%</span>
+      </div>
+      <div class="loader-bar-track">
+        <div id="loader-bar-fill" class="loader-bar-fill"></div>
+      </div>
+      <p id="loader-details" class="loader-details">Loading frames: 0 / 240</p>
+    </div>
+  </div>
+
+  <!-- Fixed Top Header Navigation -->
+  <header class="site-header" id="site-header">
+    <div class="header-inner global-container">
+      <a href="#hero" class="brand-logo">ABIR HOQ</a>
+      
+      <!-- Desktop Pill-style Navigation -->
+      <nav class="nav-pill" aria-label="Main Navigation">
+        <a href="#work" class="nav-item">Work</a>
+        <a href="#services" class="nav-item">Services</a>
+        <a href="#pricing" class="nav-item">Pricing</a>
+        <a href="#process" class="nav-item">Process</a>
+        <a href="#about" class="nav-item">About</a>
+        <a href="#contact" class="nav-item">Contact</a>
+      </nav>
+
+      <a href="#contact" class="btn-start-project">
+        <span>Get a Free Site Review</span>
+        <span class="btn-icon">↗</span>
+      </a>
+
+      <!-- Hamburger Button for Mobile -->
+      <button type="button" class="hamburger-toggle" id="hamburger-toggle" aria-label="Toggle mobile menu" aria-expanded="false" aria-controls="mobile-nav-dropdown">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+
+      <!-- Full-width Mobile Navigation Dropdown -->
+      <div class="mobile-nav-dropdown" id="mobile-nav-dropdown" aria-label="Mobile Navigation">
+        <a href="#work" class="mobile-nav-link">Work</a>
+        <a href="#services" class="mobile-nav-link">Services</a>
+        <a href="#pricing" class="mobile-nav-link">Pricing</a>
+        <a href="#process" class="mobile-nav-link">Process</a>
+        <a href="#about" class="mobile-nav-link">About</a>
+        <a href="#contact" class="mobile-nav-link">Contact</a>
+        <div class="mobile-cta-wrap">
+          <a href="#contact" class="cta-primary-btn" style="width: 100%; margin: 8px 0 0 0;">
+            <span>Get a Free Site Review</span>
+            <span>↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Scrollable Content Layout -->
+  <main class="page-content" id="page-content">
+
+    <!-- 1. HERO SECTION (Portrait Video/Canvas strictly background of Hero ONLY) -->
+    <section class="section-hero" id="hero">
+      
+      <!-- Canvas isolated strictly inside Hero section -->
+      <div class="canvas-fixed-background" id="canvas-bg-wrap">
+        <canvas id="animation-canvas" aria-hidden="true"></canvas>
+        <div class="canvas-vignette"></div>
+        <div class="canvas-bottom-fade"></div>
+      </div>
+
+      <div class="hero-container global-container">
+        
+        <!-- Big Typographic Greeting & Name -->
+        <div class="hero-typography">
+          <span class="hero-greeting">Hi, I am</span>
+          <h1 class="hero-name-split">
+            <span class="name-part left">Abir</span>
+            <span class="name-space"></span>
+            <span class="name-part right">Hoq</span>
+          </h1>
+        </div>
+
+        <!-- Hero Bottom Action Row -->
+        <div class="hero-bottom-grid">
+          <div class="hero-left-col">
+            <div class="trust-badge">
+              <span class="dot-orange"></span>
+              <span>Freelance Web Designer • Bangladesh</span>
+            </div>
+            <h2 class="hero-headline">More booking requests from your website.</h2>
+            <p class="hero-tagline-sub">
+              Helping local service businesses in the US, UK, and Canada get more booking requests.
+            </p>
+            <div class="hero-actions">
+              <a href="#contact" class="btn-primary">
+                <span>Get a Free Site Review</span>
+                <span class="btn-circle-arrow">↗</span>
+              </a>
+              <a href="#work" class="btn-link">
+                <span>View My Work</span>
+                <span class="link-arrow">↘</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-right-col">
+            <div class="client-proof-card">
+              <div class="proof-header-badge">
+                <span class="target-market-text">US · UK · Canada</span>
+                <span class="target-label">Target Markets</span>
+              </div>
+              <div class="proof-stats">
+                <p class="satisfaction-text"><strong>Mobile-First & Booking-focused</strong></p>
+                <p class="satisfaction-sub">Crafted for local service businesses to maximize customer inquiries.</p>
+              </div>
+              <div class="proof-badges">
+                <span class="mini-pill">Fast Turnaround</span>
+                <span class="mini-pill">Hand-Tested</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 2. INFINITE TICKER MARQUEE SECTION -->
+    <section class="section-marquee" aria-label="Core Principles">
+      <div class="marquee-track">
+        <div class="marquee-content">
+          <span class="marquee-item">MOBILE-FIRST DESIGN</span>
+          <span class="marquee-star">✦</span>
+          <span class="marquee-item">US • UK • CANADA</span>
+          <span class="marquee-star">✦</span>
+          <span class="marquee-item">AI-ASSISTED WORKFLOW</span>
+          <span class="marquee-star">✦</span>
+          <span class="marquee-item">HAND-TESTED QUALITY</span>
+          <span class="marquee-star">✦</span>
+          <span class="marquee-item">MOBILE-FIRST DESIGN</span>
+          <span class="marquee-star">✦</span>
+          <span class="marquee-item">US • UK • CANADA</span>
+          <span class="marquee-star">✦</span>
+          <span class="marquee-item">AI-ASSISTED WORKFLOW</span>
+          <span class="marquee-star">✦</span>
+          <span class="marquee-item">HAND-TESTED QUALITY</span>
+          <span class="marquee-star">✦</span>
+        </div>
+        <div class="marquee-content" aria-hidden="true">
+          <span class="marquee-item">MOBILE-FIRST DESIGN</span>
+          <span class="marquee-star">✦</span>
+          <span class="marquee-item">US • UK • CANADA</span>
+          <span class="marquee-star">✦</span>
+          <span class="marquee-item">AI-ASSISTED WORKFLOW</span>
+          <span class="marquee-star">✦</span>
+          <span class="marquee-item">HAND-TESTED QUALITY</span>
+          <span class="marquee-star">✦</span>
+          <span class="marquee-item">MOBILE-FIRST DESIGN</span>
+          <span class="marquee-star">✦</span>
+          <span class="marquee-item">US • UK • CANADA</span>
+          <span class="marquee-star">✦</span>
+          <span class="marquee-item">AI-ASSISTED WORKFLOW</span>
+          <span class="marquee-star">✦</span>
+          <span class="marquee-item">HAND-TESTED QUALITY</span>
+          <span class="marquee-star">✦</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. ABOUT SECTION -->
+    <section class="section-about section-spacing" id="about">
+      <div class="about-container global-container reveal-on-scroll">
+        <div class="about-label-col">
+          <div class="pill-label">
+            <span class="dot-orange"></span>
+            <span>About Me</span>
+          </div>
+          <div class="about-meta-tag">
+            <span>Based in Bangladesh</span>
+          </div>
+        </div>
+
+        <div class="about-content-col">
+          <p class="about-narrative">
+            Hey there, I'm Abir Hoq — a freelance web designer. I build fast, mobile-first websites tailored for local service businesses in the US, UK, and Canada. I use an AI-assisted workflow to build faster, and I test every page, button, and form submission by hand before delivery.
+          </p>
+          <div class="about-actions">
+            <a href="#contact" class="btn-primary">
+              <span>Get a Free Site Review</span>
+              <span class="btn-circle-arrow">↗</span>
+            </a>
+            <a href="#work" class="btn-link">
+              <span>View My Work</span>
+              <span class="link-arrow">↘</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. WHAT I DO SECTION (Section Header + Responsive 4-Card Grid) -->
+    <section class="section-services section-spacing" id="services">
+      <div class="global-container">
+        
+        <!-- Proper Section Header -->
+        <div class="section-header-pill reveal-on-scroll">
+          <div class="pill-label">
+            <span class="dot-orange"></span>
+            <span>WHAT I DO</span>
+          </div>
+          <h2 class="services-main-title">Built Specially for Local Service Businesses</h2>
+          <p class="section-subtext">
+            Tailored web design and conversion systems designed to turn Google searches and ad clicks into qualified local phone calls and direct booking requests.
+          </p>
+        </div>
+
+        <!-- Responsive Grid of 4 Cards (4 columns desktop, 2 tablet, 1 mobile) -->
+        <div class="what-i-do-grid">
+          
+          <!-- Card 1 -->
+          <div class="what-card reveal-on-scroll">
+            <div class="what-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <h3 class="what-title">Booking-focused Landing Pages</h3>
+            <p class="what-desc">Designed to turn paid ad and local search visitors into booked consultations and quote requests.</p>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="what-card reveal-on-scroll">
+            <div class="what-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
+              </svg>
+            </div>
+            <h3 class="what-title">Mobile-First Optimization</h3>
+            <p class="what-desc">Your site is built to load quickly and clicks to call effortlessly on every smartphone.</p>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="what-card reveal-on-scroll">
+            <div class="what-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <h3 class="what-title">Hand-Tested Verification</h3>
+            <p class="what-desc">Every lead form, booking scheduler, phone click, and button is tested by hand on real devices before delivery.</p>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="what-card reveal-on-scroll">
+            <div class="what-icon-wrap" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+              </svg>
+            </div>
+            <h3 class="what-title">Local SEO & Structured Schema</h3>
+            <p class="what-desc">Built with verified JSON-LD structured schema and clean markup to boost visibility in target local service areas.</p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. PRICING SECTION (3-Column Grid of Equal-Height Pricing Cards) -->
+    <section class="section-pricing section-spacing" id="pricing">
+      <div class="global-container">
+        
+        <div class="section-header-pill reveal-on-scroll">
+          <div class="pill-label">
+            <span class="dot-orange"></span>
+            <span>TRANSPARENT PRICING</span>
+          </div>
+          <h2 class="services-main-title">Simple, Fixed-Scope Packages</h2>
+          <p class="pricing-note">Prices are starting points and quoted per project.</p>
+        </div>
+
+        <div class="pricing-grid-3col">
+          
+          <!-- Card 1: Starter Site -->
+          <div class="pricing-card-equal reveal-on-scroll">
+            <div>
+              <div class="card-tier-label">Starter Site</div>
+              <p class="card-desc">Single-page mobile-first layout, custom booking form, PageSpeed optimized, basic SEO.</p>
+              <div class="card-price-row">
+                <span class="price-prefix">Starting at</span>
+                <span class="price-amount">$450</span>
+              </div>
+              <div class="card-delivery-badge">
+                <span class="badge-icon">⏱</span>
+                <span>Delivery: 3 to 5 business days</span>
+              </div>
+              <div class="pricing-divider"></div>
+              <ul class="pricing-checklist">
+                <li>
+                  <svg class="pricing-check-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Single-page mobile-first layout</span>
+                </li>
+                <li>
+                  <svg class="pricing-check-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Custom booking form via Formspree</span>
+                </li>
+                <li>
+                  <svg class="pricing-check-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Google PageSpeed optimized</span>
+                </li>
+                <li>
+                  <svg class="pricing-check-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Essential local SEO setup</span>
+                </li>
+                <li>
+                  <svg class="pricing-check-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Hand-tested before delivery</span>
+                </li>
+              </ul>
+            </div>
+            <a href="#contact" class="pricing-btn-bottom">Get Started</a>
+          </div>
+
+          <!-- Card 2: Growth Site (Middle card with orange border & glow & Recommended badge) -->
+          <div class="pricing-card-equal card-growth-highlight reveal-on-scroll">
+            <div class="pricing-badge-rec">Recommended</div>
+            <div>
+              <div class="card-tier-label">Growth Site</div>
+              <p class="card-desc">Up to 5 custom pages, lead booking form, local SEO & schema, Google Analytics setup.</p>
+              <div class="card-price-row">
+                <span class="price-prefix">Starting at</span>
+                <span class="price-amount">$900</span>
+              </div>
+              <div class="card-delivery-badge badge-popular">
+                <span class="badge-icon">⏱</span>
+                <span>Delivery: 7 to 10 business days</span>
+              </div>
+              <div class="pricing-divider"></div>
+              <ul class="pricing-checklist">
+                <li>
+                  <svg class="pricing-check-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Up to 5 custom responsive pages</span>
+                </li>
+                <li>
+                  <svg class="pricing-check-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Booking-focused lead booking form</span>
+                </li>
+                <li>
+                  <svg class="pricing-check-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Local SEO & JSON-LD schema</span>
+                </li>
+                <li>
+                  <svg class="pricing-check-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Google Analytics tracking setup</span>
+                </li>
+                <li>
+                  <svg class="pricing-check-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Verified form delivery to inbox</span>
+                </li>
+              </ul>
+            </div>
+            <a href="#contact" class="pricing-btn-bottom btn-highlight">Get Started</a>
+          </div>
+
+          <!-- Card 3: Growth + Monthly Care -->
+          <div class="pricing-card-equal reveal-on-scroll">
+            <div>
+              <div class="card-tier-label">Growth + Monthly Care</div>
+              <p class="card-desc">Includes Growth Site, hosting help, ongoing site updates, and a monthly performance report.</p>
+              <div class="card-price-row">
+                <span class="price-prefix">Starting at</span>
+                <span class="price-amount">$150<span class="price-cycle">/mo</span></span>
+              </div>
+              <div class="card-delivery-badge">
+                <span class="badge-icon">🔄</span>
+                <span>Continuous Monthly Support</span>
+              </div>
+              <div class="pricing-divider"></div>
+              <ul class="pricing-checklist">
+                <li>
+                  <svg class="pricing-check-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Complete Growth Site build included</span>
+                </li>
+                <li>
+                  <svg class="pricing-check-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Managed cloud hosting assistance</span>
+                </li>
+                <li>
+                  <svg class="pricing-check-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Content edits & regular site updates</span>
+                </li>
+                <li>
+                  <svg class="pricing-check-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Monthly PageSpeed & uptime reports</span>
+                </li>
+                <li>
+                  <svg class="pricing-check-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+                  <span>Ongoing email priority support</span>
+                </li>
+              </ul>
+            </div>
+            <a href="#contact" class="pricing-btn-bottom">Get Started</a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. PROCESS SECTION (3 Numbered Step Cards with Connector Lines) -->
+    <section class="section-process section-spacing" id="process">
+      <div class="global-container">
+        
+        <div class="section-header-pill reveal-on-scroll">
+          <div class="pill-label">
+            <span class="dot-orange"></span>
+            <span>HOW WE WORK</span>
+          </div>
+          <h2 class="services-main-title">A Fast, Transparent 3-Step Process</h2>
+          <p class="section-subtext">
+            No endless meetings or hidden fees. Just a clear, reliable workflow designed to build and launch your high-performance website in days.
+          </p>
+        </div>
+
+        <div class="process-row-desktop">
+          
+          <!-- Step 01 -->
+          <div class="process-step-card-new reveal-on-scroll">
+            <div class="faded-step-num">01</div>
+            <h3 class="step-card-title">Site & Competitor Audit</h3>
+            <p class="step-card-text">We review your existing site, local competitors, and target service areas in the US, UK, or Canada.</p>
+            <div class="step-deliverable-box">
+              <span class="deliverable-icon">✓</span>
+              <span>Conversion roadmap & local market audit</span>
+            </div>
+          </div>
+
+          <!-- Step 02 -->
+          <div class="process-step-card-new reveal-on-scroll">
+            <div class="faded-step-num">02</div>
+            <h3 class="step-card-title">AI-Assisted Build</h3>
+            <p class="step-card-text">Modern, clean design structured with high-speed development workflows to get you launched without weeks of delay.</p>
+            <div class="step-deliverable-box">
+              <span class="deliverable-icon">✓</span>
+              <span>Mobile-first build, clean code & zero bloat</span>
+            </div>
+          </div>
+
+          <!-- Step 03 -->
+          <div class="process-step-card-new reveal-on-scroll">
+            <div class="faded-step-num">03</div>
+            <h3 class="step-card-title">Hand-Tested Launch</h3>
+            <p class="step-card-text">Rigorous device testing for forms, click-to-call, speed, and mobile responsiveness before going live.</p>
+            <div class="step-deliverable-box">
+              <span class="deliverable-icon">✓</span>
+              <span>Form tested to reach the inbox before launch; PageSpeed results shared at handover</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 7. SELECTED WORK SECTION (4 Equal Project Cards in 2x2 Grid) -->
+    <section class="section-projects section-spacing" id="work">
+      <div class="global-container">
+        
+        <div class="projects-header reveal-on-scroll">
+          <div class="pill-label">
+            <span class="dot-orange"></span>
+            <span>Selected Work</span>
+          </div>
+          <h2 class="projects-title">Work That Delivers Results</h2>
+          <p class="projects-top-note">
+            All four are concept projects with clearly labeled sample content, built with an AI-assisted workflow; I tested every page, form and score by hand.
+          </p>
+        </div>
+
+        <!-- 2x2 Grid Layout (1 column on mobile) -->
+        <div class="work-grid-2x2">
+          
+          <!-- PROJECT 1: Brightline Dental -->
+          <article class="project-card-2x2 reveal-on-scroll" data-project-id="dental">
+            <div class="project-frame-16-10">
+              <span class="concept-badge">Concept project</span>
+              <img src="assets/dental.png" alt="Brightline Dental Website Mockup" width="800" height="500" loading="lazy">
+            </div>
+            <div class="project-body">
+              <h3 class="project-name">Brightline Dental</h3>
+              <p class="project-desc">Clean, mobile-first one-page concept website for a fictional dental clinic.</p>
+              
+              <div class="project-scores-row" aria-label="PageSpeed Mobile: Perf 91, A11y 97, Best 100, SEO 100">
+                <span class="score-pill-green">Perf 91</span>
+                <span class="score-pill-green">A11y 97</span>
+                <span class="score-pill-green">Best 100</span>
+                <span class="score-pill-green">SEO 100</span>
+              </div>
+
+              <div class="project-actions-row">
+                <a href="https://abirhoq.github.io/dental/" target="_blank" rel="noopener noreferrer" class="btn-view-live">
+                  <span>View live site</span>
+                  <span>↗</span>
+                </a>
+                <button type="button" class="link-read-case btn-case-study"
+                  data-title="Brightline Dental"
+                  data-summary="Clean, mobile-first one-page concept website for a fictional dental clinic."
+                  data-pagespeed="Performance 91 | Accessibility 97 | Best Practices 100 | SEO 100"
+                  data-problem="Local service businesses often lose potential patients due to outdated websites, poor mobile responsiveness, or missing online booking features."
+                  data-todo="Built a clean, mobile-first one-page concept website; connected a booking form via Formspree routing appointment requests directly to the owner's inbox; added sticky call and booking action buttons; implemented local SEO features (JSON-LD); ensured transparency with no fake reviews."
+                  data-results="PageSpeed scores (91/97/100/100) and verified live booking form submission delivering messages directly to inbox."
+                  data-url="https://abirhoq.github.io/dental/"
+                  aria-haspopup="dialog">
+                  Read case study
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 2: Pulse & Form Studio -->
+          <article class="project-card-2x2 reveal-on-scroll" data-project-id="fitness">
+            <div class="project-frame-16-10">
+              <span class="concept-badge">Concept project</span>
+              <img src="assets/fitness.png" alt="Pulse & Form Fitness Studio Website Mockup" width="800" height="500" loading="lazy">
+            </div>
+            <div class="project-body">
+              <h3 class="project-name">Pulse & Form Studio</h3>
+              <p class="project-desc">Fictional fitness studio website built for conversion-focused web design and clean frontend implementation.</p>
+              
+              <div class="project-scores-row" aria-label="PageSpeed Mobile: Perf 91, A11y 94, Best 100, SEO 100">
+                <span class="score-pill-green">Perf 91</span>
+                <span class="score-pill-green">A11y 94</span>
+                <span class="score-pill-green">Best 100</span>
+                <span class="score-pill-green">SEO 100</span>
+              </div>
+
+              <div class="project-actions-row">
+                <a href="https://abirhoq.github.io/Fitness-Studio/" target="_blank" rel="noopener noreferrer" class="btn-view-live">
+                  <span>View live site</span>
+                  <span>↗</span>
+                </a>
+                <button type="button" class="link-read-case btn-case-study"
+                  data-title="Pulse & Form – Boutique Fitness Studio"
+                  data-summary="Concept project featuring a fictional fitness studio website designed to demonstrate conversion-focused web design and clean frontend implementation."
+                  data-pagespeed="Performance 91 | Accessibility 94 | Best Practices 100 | SEO 100"
+                  data-problem="Local fitness studios often suffer from cluttered interfaces, poor mobile usability, and unreliable contact forms."
+                  data-todo="Built a mobile-first single-page site with sticky action buttons; integrated an interactive booking form via Formspree; configured local SEO essentials (titles, meta tags, structured data); maintained complete authenticity with no fake stats."
+                  data-results="PageSpeed score tested on Oct 12, 2026 (91 Mobile / 100 Desktop, 94 A11y, 100 Best Practices, 100 SEO); verified reliable lead delivery with live form submissions."
+                  data-url="https://abirhoq.github.io/Fitness-Studio/"
+                  aria-haspopup="dialog">
+                  Read case study
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 3: Evergreen Home Cleaning -->
+          <article class="project-card-2x2 reveal-on-scroll" data-project-id="cleaning">
+            <div class="project-frame-16-10">
+              <span class="concept-badge">Concept project</span>
+              <img src="assets/cleaning.png" alt="Evergreen Home Cleaning Website Mockup" width="800" height="500" loading="lazy">
+            </div>
+            <div class="project-body">
+              <h3 class="project-name">Evergreen Home Cleaning</h3>
+              <p class="project-desc">Concept site for a fictional home cleaning company with a quote request form.</p>
+              
+              <div class="project-scores-row" aria-label="PageSpeed Mobile: Perf 94, A11y 95, Best 100, SEO 100">
+                <span class="score-pill-green">Perf 94</span>
+                <span class="score-pill-green">A11y 95</span>
+                <span class="score-pill-green">Best 100</span>
+                <span class="score-pill-green">SEO 100</span>
+              </div>
+
+              <div class="project-actions-row">
+                <a href="https://abirhoq.github.io/Evergreen-Home-Cleaning/" target="_blank" rel="noopener noreferrer" class="btn-view-live">
+                  <span>View live site</span>
+                  <span>↗</span>
+                </a>
+                <button type="button" class="link-read-case btn-case-study"
+                  data-title="Evergreen Home Cleaning"
+                  data-summary="Fast, trustworthy, and fully functional prototype for a local home cleaning service."
+                  data-pagespeed="Performance 94 | Accessibility 95 | Best Practices 100 | SEO 100"
+                  data-problem="Many local service websites are hard to navigate on mobile devices, lack working quote forms, and display exaggerated claims."
+                  data-todo="Built a mobile-first single-page site with sticky action buttons; integrated a quote request form sending direct emails via Formspree; implemented local SEO best practices; ensured complete transparency avoiding fake reviews."
+                  data-results="Achieved high PageSpeed scores (94/95/100/100 on mobile) and created a clean, fast prototype."
+                  data-url="https://abirhoq.github.io/Evergreen-Home-Cleaning/"
+                  aria-haspopup="dialog">
+                  Read case study
+                </button>
+              </div>
+            </div>
+          </article>
+
+          <!-- PROJECT 4: Harbor & Pine Accounting Firm -->
+          <article class="project-card-2x2 reveal-on-scroll" data-project-id="accounting">
+            <div class="project-frame-16-10">
+              <span class="concept-badge">Concept project</span>
+              <img src="assets/accounting.png" alt="Harbor & Pine Accounting Firm Website Mockup" width="800" height="500" loading="lazy">
+            </div>
+            <div class="project-body">
+              <h3 class="project-name">Harbor & Pine Accounting Firm</h3>
+              <p class="project-desc">A clean, fictional accounting firm website built as a modern portfolio concept project.</p>
+              
+              <div class="project-scores-row" aria-label="PageSpeed Mobile: Perf 92, A11y 93, Best 100, SEO 100">
+                <span class="score-pill-green">Perf 92</span>
+                <span class="score-pill-green">A11y 93</span>
+                <span class="score-pill-green">Best 100</span>
+                <span class="score-pill-green">SEO 100</span>
+              </div>
+
+              <div class="project-actions-row">
+                <a href="https://abirhoq.github.io/Accounting-firm" target="_blank" rel="noopener noreferrer" class="btn-view-live">
+                  <span>View live site</span>
+                  <span>↗</span>
+                </a>
+                <button type="button" class="link-read-case btn-case-study"
+                  data-title="Harbor & Pine Accounting Firm"
+                  data-summary="A clean, fictional accounting firm website built as a modern portfolio concept project."
+                  data-pagespeed="Performance 92 (Mobile, Oct 17, 2026) | Accessibility 93 | Best Practices 100 | SEO 100"
+                  data-problem="Small service businesses often lack a simple, accessible online presence that lets potential clients easily understand services and reach out directly."
+                  data-todo="Built a mobile-first site tailored for smooth reading; integrated a functional booking form via Formspree routing inquiries to inbox; implemented local SEO best practices and sticky action buttons; kept content strictly realistic."
+                  data-results="Delivered a fast, fully responsive, and functional design ready for production deployment with verified form routing."
+                  data-url="https://abirhoq.github.io/Accounting-firm"
+                  aria-haspopup="dialog">
+                  Read case study
+                </button>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- Craft Quote Callout -->
+        <div class="craft-callout reveal-on-scroll">
+          <p class="craft-quote">I pay attention to the smallest details.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 8. BOTTOM CTA SECTION & ACCESSIBLE CONTACT FORM -->
+    <section class="section-footer-cta section-spacing" id="contact">
+      <div class="global-container">
+        
+        <div class="footer-centered-card reveal-on-scroll">
+          <span class="footer-cta-subtitle">READY TO GET MORE BOOKINGS?</span>
+          <h2 class="footer-cta-title">Get a Free Site Review for your business.</h2>
+          <p class="footer-cta-subtext">Send me your current site URL or project idea, and I'll give you a personalized video breakdown with actionable improvements.</p>
+          
+          <!-- One Clear Primary Button -->
+          <a href="mailto:abir@example.com" class="cta-primary-btn">
+            <span>Get a Free Site Review</span>
+            <span class="btn-circle-arrow">↗</span>
+          </a>
+
+          <!-- Contact Form with Visible Borders & High Contrast -->
+          <form class="contact-form-glass" action="https://formspree.io/f/sample" method="POST">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contact-name">Your Name</label>
+                <input type="text" id="contact-name" name="name" placeholder="John Doe" required>
+              </div>
+              <div class="form-group">
+                <label for="contact-email">Email Address</label>
+                <input type="email" id="contact-email" name="email" placeholder="john@example.com" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contact-url">Current Website URL or Project Details</label>
+              <input type="text" id="contact-url" name="website" placeholder="https://example.com or new project idea">
+            </div>
+            <div class="form-group">
+              <label for="contact-msg">How Can I Help You?</label>
+              <textarea id="contact-msg" name="message" rows="4" placeholder="Tell me about your business, target area, and booking goals..."></textarea>
+            </div>
+            <button type="submit" class="cta-primary-btn" style="width: auto; align-self: center; border: none; cursor: pointer;">
+              <span>Send Request</span>
+              <span class="btn-circle-arrow">↗</span>
+            </button>
+          </form>
+
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Solid Dark Footer -->
+  <footer class="site-footer-solid">
+    <div class="footer-inner">
+      <span>© 2026 Abir Hoq. Freelance Web Designer.</span>
+      <span>Based in Bangladesh • Serving US, UK & Canada</span>
+    </div>
+  </footer>
+
+  <!-- Interactive Case Study Modal Pop-up Container -->
+  <div id="case-study-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <button type="button" class="modal-close" id="modal-close-btn" aria-label="Close Case Study Modal">✕</button>
+      
+      <div class="modal-header">
+        <span class="concept-badge">Concept project</span>
+        <h3 id="modal-title" class="modal-title">Project Title</h3>
+        <p id="modal-summary" class="modal-summary">Project Summary Description.</p>
+      </div>
+
+      <div class="modal-pagespeed-wrap">
+        <div class="modal-ps-top">
+          <span class="ps-label">PageSpeed Mobile Scores</span>
+          <span class="ps-verified">✓ Hand-Tested</span>
+        </div>
+        <p id="modal-pagespeed" class="modal-pagespeed-text">Performance 91 | Accessibility 97 | Best Practices 100 | SEO 100</p>
+      </div>
+
+      <div class="inbox-verification">
+        <span class="verify-icon">✉</span>
+        <span>A live test submission reached the owner's inbox.</span>
+      </div>
+
+      <div class="modal-sections">
+        <div class="modal-section-card">
+          <span class="cs-badge">Problem</span>
+          <p id="modal-problem" class="modal-text">Problem description.</p>
+        </div>
+
+        <div class="modal-section-card">
+          <span class="cs-badge">What I Did</span>
+          <p id="modal-todo" class="modal-text">What I did description.</p>
+        </div>
+
+        <div class="modal-section-card">
+          <span class="cs-badge">Results</span>
+          <p id="modal-results" class="modal-text">Results description.</p>
+        </div>
+      </div>
+
+      <div class="modal-footer">
+        <a id="modal-url" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary modal-cta-btn">
+          <span>View Live Site</span>
+          <span class="btn-circle-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
