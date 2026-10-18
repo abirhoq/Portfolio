@@ -17,22 +17,6 @@
   <!-- Decorative top scroll progress bar conforming to modern web guidance -->
   <div id="scroll-progress-bar" aria-hidden="true"></div>
 
-  <!-- Loading Screen Overlay for smooth frame caching -->
-  <div id="loader" class="loader-container">
-    <div class="loader-content">
-      <div class="loader-brand">ABIR HOQ</div>
-      <div class="loader-spinner"></div>
-      <div class="loader-status">
-        <span class="loader-title">Loading Experience</span>
-        <span id="loader-percent" class="loader-percent">0%</span>
-      </div>
-      <div class="loader-bar-track">
-        <div id="loader-bar-fill" class="loader-bar-fill"></div>
-      </div>
-      <p id="loader-details" class="loader-details">Loading frames: 0 / 240</p>
-    </div>
-  </div>
-
   <!-- Fixed Top Header Navigation -->
   <header class="site-header" id="site-header">
     <div class="header-inner global-container">
@@ -85,8 +69,8 @@
     <section class="section-hero" id="hero">
       
       <!-- Canvas isolated strictly inside Hero section -->
-      <div class="canvas-fixed-background" id="canvas-bg-wrap">
-        <canvas id="animation-canvas" aria-hidden="true"></canvas>
+      <div class="hero-portrait-background" aria-hidden="true">
+        <img src="frames/frame_0001.png" alt="Abir Hoq Portrait" class="hero-portrait-img" width="1280" height="720" fetchpriority="high">
         <div class="canvas-vignette"></div>
         <div class="canvas-bottom-fade"></div>
       </div>
@@ -232,7 +216,7 @@
           </div>
           <h2 class="services-main-title">Built Specially for Local Service Businesses</h2>
           <p class="section-subtext">
-            Tailored web design and conversion systems designed to turn Google searches and ad clicks into qualified local phone calls and direct booking requests.
+            Tailored web design and conversion systems fast, mobile-first websites with clear call and booking buttons, so visitors from Google and ads can reach you easily.
           </p>
         </div>
 
@@ -247,7 +231,7 @@
               </svg>
             </div>
             <h3 class="what-title">Booking-focused Landing Pages</h3>
-            <p class="what-desc">Designed to turn paid ad and local search visitors into booked consultations and quote requests.</p>
+            <p class="what-desc">Designed to make it easy for visitors to request a booking or a quote.</p>
           </div>
 
           <!-- Card 2 -->
@@ -271,7 +255,7 @@
               </svg>
             </div>
             <h3 class="what-title">Hand-Tested Verification</h3>
-            <p class="what-desc">Every lead form, booking scheduler, phone click, and button is tested by hand on real devices before delivery.</p>
+            <p class="what-desc">Every lead form, booking scheduler, phone click, and button is tested by hand on phone and desktop browsers before delivery.</p>
           </div>
 
           <!-- Card 4 -->
@@ -282,7 +266,7 @@
               </svg>
             </div>
             <h3 class="what-title">Local SEO & Structured Schema</h3>
-            <p class="what-desc">Built with verified JSON-LD structured schema and clean markup to boost visibility in target local service areas.</p>
+            <p class="what-desc">Built with JSON-LD structured data and clean markup to help search engines understand your business.</p>
           </div>
 
         </div>
@@ -367,7 +351,7 @@
                 </li>
                 <li>
                   <svg class="pricing-check-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-                  <span>Booking-focused lead booking form</span>
+                  <span>Booking-focused lead form</span>
                 </li>
                 <li>
                   <svg class="pricing-check-svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
@@ -602,7 +586,7 @@
                 </a>
                 <button type="button" class="link-read-case btn-case-study"
                   data-title="Evergreen Home Cleaning"
-                  data-summary="Fast, trustworthy, and fully functional prototype for a local home cleaning service."
+                  data-summary="Concept site for a fictional home cleaning company with a quote request form."
                   data-pagespeed="Performance 94 | Accessibility 95 | Best Practices 100 | SEO 100"
                   data-problem="Many local service websites are hard to navigate on mobile devices, lack working quote forms, and display exaggerated claims."
                   data-todo="Built a mobile-first single-page site with sticky action buttons; integrated a quote request form sending direct emails via Formspree; implemented local SEO best practices; ensured complete transparency avoiding fake reviews."
@@ -654,11 +638,6 @@
 
         </div>
 
-        <!-- Craft Quote Callout -->
-        <div class="craft-callout reveal-on-scroll">
-          <p class="craft-quote">I pay attention to the smallest details.</p>
-        </div>
-
       </div>
     </section>
 
@@ -672,20 +651,20 @@
           <p class="footer-cta-subtext">Send me your current site URL or project idea, and I'll give you a personalized video breakdown with actionable improvements.</p>
           
           <!-- One Clear Primary Button -->
-          <a href="mailto:abir@example.com" class="cta-primary-btn">
+          <a href="mailto:abirhoq99@gmail.com" class="cta-primary-btn">
             <span>Get a Free Site Review</span>
             <span class="btn-circle-arrow">↗</span>
           </a>
 
           <!-- Contact Form with Visible Borders & High Contrast -->
-          <form class="contact-form-glass" action="https://formspree.io/f/sample" method="POST">
+          <form id="contact-form" class="contact-form-glass" action="https://formspree.io/f/xvkzyblw" method="POST">
             <div class="form-row">
               <div class="form-group">
-                <label for="contact-name">Your Name</label>
+                <label for="contact-name">Your Name <span style="color: var(--accent-orange);">*</span></label>
                 <input type="text" id="contact-name" name="name" placeholder="John Doe" required>
               </div>
               <div class="form-group">
-                <label for="contact-email">Email Address</label>
+                <label for="contact-email">Email Address <span style="color: var(--accent-orange);">*</span></label>
                 <input type="email" id="contact-email" name="email" placeholder="john@example.com" required>
               </div>
             </div>
@@ -694,10 +673,14 @@
               <input type="text" id="contact-url" name="website" placeholder="https://example.com or new project idea">
             </div>
             <div class="form-group">
-              <label for="contact-msg">How Can I Help You?</label>
-              <textarea id="contact-msg" name="message" rows="4" placeholder="Tell me about your business, target area, and booking goals..."></textarea>
+              <label for="contact-msg">How Can I Help You? <span style="color: var(--accent-orange);">* (min 10 characters)</span></label>
+              <textarea id="contact-msg" name="message" rows="4" minlength="10" placeholder="Tell me about your business, target area, and booking goals..." required></textarea>
             </div>
-            <button type="submit" class="cta-primary-btn" style="width: auto; align-self: center; border: none; cursor: pointer;">
+            
+            <!-- Hidden status message area until submit -->
+            <div id="contact-status" class="contact-status-box" style="display: none;" role="alert"></div>
+
+            <button type="submit" id="contact-submit-btn" class="cta-primary-btn" style="width: auto; align-self: center; border: none; cursor: pointer;">
               <span>Send Request</span>
               <span class="btn-circle-arrow">↗</span>
             </button>
@@ -725,8 +708,8 @@
       
       <div class="modal-header">
         <span class="concept-badge">Concept project</span>
-        <h3 id="modal-title" class="modal-title">Project Title</h3>
-        <p id="modal-summary" class="modal-summary">Project Summary Description.</p>
+        <h3 id="modal-title" class="modal-title">Brightline Dental</h3>
+        <p id="modal-summary" class="modal-summary">Clean, mobile-first one-page concept website for a fictional dental clinic.</p>
       </div>
 
       <div class="modal-pagespeed-wrap">
@@ -745,22 +728,22 @@
       <div class="modal-sections">
         <div class="modal-section-card">
           <span class="cs-badge">Problem</span>
-          <p id="modal-problem" class="modal-text">Problem description.</p>
+          <p id="modal-problem" class="modal-text">Local service businesses often lose potential patients due to outdated websites, poor mobile responsiveness, or missing online booking features.</p>
         </div>
 
         <div class="modal-section-card">
           <span class="cs-badge">What I Did</span>
-          <p id="modal-todo" class="modal-text">What I did description.</p>
+          <p id="modal-todo" class="modal-text">Built a clean, mobile-first one-page concept website; connected a booking form via Formspree routing appointment requests directly to the owner's inbox; added sticky call and booking action buttons; implemented local SEO features (JSON-LD); ensured transparency with no fake reviews.</p>
         </div>
 
         <div class="modal-section-card">
           <span class="cs-badge">Results</span>
-          <p id="modal-results" class="modal-text">Results description.</p>
+          <p id="modal-results" class="modal-text">PageSpeed scores (91/97/100/100) and verified live booking form submission delivering messages directly to inbox.</p>
         </div>
       </div>
 
       <div class="modal-footer">
-        <a id="modal-url" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary modal-cta-btn">
+        <a id="modal-url" href="https://abirhoq.github.io/dental/" target="_blank" rel="noopener noreferrer" class="btn-primary modal-cta-btn">
           <span>View Live Site</span>
           <span class="btn-circle-arrow">↗</span>
         </a>

@@ -47,22 +47,24 @@ body {
 /* ==========================================================================
    Fixed Background Canvas & Vignette Overlays
    ========================================================================== */
-.canvas-fixed-background {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
+.canvas-fixed-background,
+.hero-portrait-background {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
 }
 
-#animation-canvas {
+#animation-canvas,
+.hero-portrait-img {
   width: 100%;
   height: 100%;
   display: block;
   object-fit: cover;
+  object-position: center top;
   image-rendering: -webkit-optimize-contrast;
   opacity: 0.95;
 }
@@ -420,7 +422,14 @@ body {
 }
 
 .hero-left-col {
-  max-width: 480px;
+  max-width: 520px;
+  position: relative;
+  z-index: 2;
+  background: radial-gradient(circle at left center, rgba(7, 7, 9, 0.88) 0%, rgba(7, 7, 9, 0.6) 75%, transparent 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 16px 20px;
+  border-radius: 14px;
 }
 
 .trust-badge {
@@ -448,6 +457,7 @@ body {
   letter-spacing: -0.02em;
   color: #ffffff;
   margin-bottom: 12px;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 0 32px rgba(0, 0, 0, 0.85);
 }
 
 .hero-tagline-sub {
@@ -2744,3 +2754,65 @@ body {
     transition: none !important;
   }
 }
+
+/* Formspree Status Message Box */
+.contact-status-box {
+  width: 100%;
+  max-width: 540px;
+  margin: 14px auto 18px;
+  padding: 14px 20px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.contact-status-box.success {
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #4ade80;
+}
+
+.contact-status-box.error {
+  background: rgba(239, 68, 68, 0.15);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  color: #f87171;
+}
+
+/* Ensure Hero Headline & Buttons are Above The Fold on all screen sizes */
+@media (max-width: 768px) {
+  .section-hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 85px 20px 24px !important;
+    justify-content: flex-end;
+  }
+  .hero-container {
+    min-height: auto;
+    justify-content: flex-end;
+  }
+  .hero-typography {
+    margin-top: 0;
+  }
+  .hero-bottom-grid {
+    margin-top: 14px;
+    gap: 14px;
+  }
+  .hero-left-col {
+    padding: 14px 16px;
+  }
+  .hero-headline {
+    font-size: clamp(1.6rem, 6vw, 2.2rem);
+    margin-bottom: 8px;
+  }
+  .hero-tagline-sub {
+    font-size: 0.9rem;
+    margin-bottom: 16px;
+  }
+  .hero-actions {
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+}
+

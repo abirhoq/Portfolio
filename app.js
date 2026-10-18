@@ -1,314 +1,61 @@
 /**
- * Portfolio Experience & Ultra-Smooth Scroll-Based Background Animation
- * 240 Frames @ 24fps | Native 1280x720 Canvas Render
- * Features: LERP Inertia Physics, HiDPI Retina Scaling, Intelligent Caching,
- * and Dynamic Viewport Scroller Binding.
+ * Portfolio Interactive Scripts
+ * Lightweight, accessible, and fast.
+ * - IntersectionObserver active nav highlighting
+ * - Case study modal with data-attributes & keyboard accessibility
+ * - Mobile hamburger menu
+ * - Fade-up scroll animations
+ * - Formspree fetch contact form submission
  */
 
 (function () {
   'use strict';
 
-  // --- Configuration ---
-  const TOTAL_FRAMES = 240;
-  const FRAME_BASE_PATH = 'frames/frame_';
-  const LERP_FACTOR = 0.085; // Damping constant for Apple-like silky momentum
-  const EPSILON = 0.0002;    // Snap threshold to stop rAF when resting
-
-  // --- DOM Elements ---
-  const canvas = document.getElementById('animation-canvas');
-  const ctx = canvas.getContext('2d', { alpha: false });
+  // --- Header Scrolled Background ---
   const siteHeader = document.getElementById('site-header');
-  const loader = document.getElementById('loader');
-  const loaderPercent = document.getElementById('loader-percent');
-  const loaderBarFill = document.getElementById('loader-bar-fill');
-  const loaderDetails = document.getElementById('loader-details');
-  const fallbackProgressBar = document.getElementById('scroll-progress-bar');
-  const navItems = document.querySelectorAll('.nav-item');
-
-  // --- State Variables ---
-  const images = new Array(TOTAL_FRAMES);
-  const loadedFlags = new Array(TOTAL_FRAMES).fill(false);
-  let loadedCount = 0;
-  let targetProgress = 0;
-  let currentProgress = 0;
-  let renderedFrameIndex = -1;
-  let isLoopRunning = false;
-  let isLoaderDismissed = false;
-  let viewportWidth = 0;
-  let viewportHeight = 0;
-  let dpr = 1;
-
-  // Modern Web Guidance: Check if native scroll-timeline is supported
-  const supportsNativeScrollTimeline =
-    window.CSS &&
-    typeof CSS.supports === 'function' &&
-    CSS.supports('animation-timeline', 'scroll()');
-
-  /**
-   * Format 1-based index to 4-digit filename: "0001" to "0240"
-   */
-  function getFrameUrl(index) {
-    const padded = String(index).padStart(4, '0');
-    return `${FRAME_BASE_PATH}${padded}.png`;
-  }
-
-  /**
-   * Resize Canvas Buffer respecting Device Pixel Ratio (capped at 2 for performance)
-   */
-  function handleResize() {
-    viewportWidth = window.innerWidth;
-    viewportHeight = window.innerHeight;
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-
-    canvas.width = Math.round(viewportWidth * dpr);
-    canvas.height = Math.round(viewportHeight * dpr);
-
-    // Turn on high quality image smoothing
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
-
-    // Force redraw on resize
-    if (renderedFrameIndex >= 0) {
-      drawFrame(renderedFrameIndex);
-    }
-  }
-
-  /**
-   * Draw specific frame with "cover" aspect-ratio preservation
-   */
-  function drawFrame(index) {
-    let img = images[index];
-
-    // If target frame is still downloading, find nearest available cached frame
-    if (!loadedFlags[index]) {
-      img = findNearestLoadedImage(index);
-      if (!img) return; // No frames loaded at all yet
-    }
-
-    const imgWidth = img.naturalWidth || 1280;
-    const imgHeight = img.naturalHeight || 720;
-    const imgAspect = imgWidth / imgHeight;
-    const canvasAspect = canvas.width / canvas.height;
-
-    let drawWidth, drawHeight, offsetX, offsetY;
-
-    if (canvasAspect > imgAspect) {
-      drawWidth = canvas.width;
-      drawHeight = canvas.width / imgAspect;
-      offsetX = 0;
-      offsetY = (canvas.height - drawHeight) / 2;
-    } else {
-      drawHeight = canvas.height;
-      drawWidth = canvas.height * imgAspect;
-      offsetX = (canvas.width - drawWidth) / 2;
-      offsetY = 0;
-    }
-
-    // Render cleanly onto canvas
-    ctx.drawImage(img, offsetX, offsetY, drawWidth, drawHeight);
-    renderedFrameIndex = index;
-  }
-
-  /**
-   * Find nearest loaded frame index to prevent stutter/blanks during rapid scrubs
-   */
-  function findNearestLoadedImage(targetIdx) {
-    for (let offset = 1; offset < TOTAL_FRAMES; offset++) {
-      const forward = targetIdx + offset;
-      if (forward < TOTAL_FRAMES && loadedFlags[forward]) {
-        return images[forward];
-      }
-      const backward = targetIdx - offset;
-      if (backward >= 0 && loadedFlags[backward]) {
-        return images[backward];
-      }
-    }
-    return null;
-  }
-
-  /**
-   * Animation Render Loop with Linear Interpolation (LERP)
-   */
-  function animate() {
-    const delta = targetProgress - currentProgress;
-
-    if (Math.abs(delta) > EPSILON) {
-      currentProgress += delta * LERP_FACTOR;
-    } else {
-      currentProgress = targetProgress;
-    }
-
-    // Calculate corresponding frame (0 to 239)
-    const targetFrame = Math.min(
-      TOTAL_FRAMES - 1,
-      Math.max(0, Math.round(currentProgress * (TOTAL_FRAMES - 1)))
-    );
-
-    if (targetFrame !== renderedFrameIndex) {
-      drawFrame(targetFrame);
-    }
-
-    // Update fallback scroll progress bar if CSS scroll-timeline is unsupported
-    if (!supportsNativeScrollTimeline && fallbackProgressBar) {
-      fallbackProgressBar.style.transform = `scaleX(${currentProgress})`;
-    }
-
-    // Continue rAF loop if still interpolating
-    if (Math.abs(targetProgress - currentProgress) > EPSILON) {
-      requestAnimationFrame(animate);
-    } else {
-      isLoopRunning = false;
-    }
-  }
-
-  /**
-   * Trigger the animation loop if it is not already running
-   */
-  function requestTick() {
-    if (!isLoopRunning) {
-      isLoopRunning = true;
-      requestAnimationFrame(animate);
-    }
-  }
-
-  /**
-   * Scroll Event Handler
-   */
   function onScroll() {
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    if (maxScroll <= 0) return;
-
     const scrollTop = window.scrollY || window.pageYOffset || 0;
-    targetProgress = Math.min(1, Math.max(0, scrollTop / maxScroll));
-
-    // Header blur state on scroll
-    if (scrollTop > 60) {
-      siteHeader.classList.add('scrolled');
-    } else {
-      siteHeader.classList.remove('scrolled');
-    }
-
-    // Active navigation state update based on scroll position
-    updateActiveNav(scrollTop);
-
-    requestTick();
-  }
-
-  /**
-   * Update Active Navigation Pill
-   */
-  function updateActiveNav(scrollTop) {
-    const sections = ['hero', 'services', 'process', 'work', 'about', 'contact'];
-    let currentSection = 'hero';
-
-    sections.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) {
-        const top = el.offsetTop - 180;
-        if (scrollTop >= top) {
-          currentSection = id;
-        }
-      }
-    });
-
-    navItems.forEach((item) => {
-      const href = item.getAttribute('href');
-      if (href === `#${currentSection}`) {
-        item.classList.add('active');
+    if (siteHeader) {
+      if (scrollTop > 50) {
+        siteHeader.classList.add('scrolled');
       } else {
-        item.classList.remove('active');
+        siteHeader.classList.remove('scrolled');
       }
+    }
+  }
+
+  // --- Active Navigation Highlight via IntersectionObserver ---
+  function initActiveNavObserver() {
+    const navLinks = document.querySelectorAll('.nav-item');
+    const sectionIds = ['hero', 'services', 'pricing', 'process', 'work', 'about', 'contact'];
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -60% 0px',
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const currentId = entry.target.getAttribute('id');
+          navLinks.forEach((link) => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${currentId}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
     });
   }
 
-  /**
-   * Concurrent Progressive Image Preloader
-   */
-  function preloadImages() {
-    // 1. Prioritize frame 1 (index 0) for instantaneous first paint
-    const firstImg = new Image();
-    firstImg.src = getFrameUrl(1);
-    images[0] = firstImg;
-
-    firstImg.onload = () => {
-      loadedFlags[0] = true;
-      loadedCount++;
-      drawFrame(0);
-      updateLoaderProgress();
-
-      // Once frame 1 is ready, load the remaining 239 frames concurrently in batches
-      preloadRemainingFrames();
-    };
-
-    firstImg.onerror = () => {
-      console.warn('Failed to load initial frame:', firstImg.src);
-      preloadRemainingFrames();
-    };
-  }
-
-  /**
-   * Load remaining frames with concurrency control
-   */
-  function preloadRemainingFrames() {
-    const queue = [];
-    for (let i = 1; i < TOTAL_FRAMES; i++) {
-      queue.push(i);
-    }
-
-    const CONCURRENCY = 8;
-    let activeWorkers = 0;
-
-    function processQueue() {
-      while (activeWorkers < CONCURRENCY && queue.length > 0) {
-        const index = queue.shift();
-        activeWorkers++;
-
-        const img = new Image();
-        img.src = getFrameUrl(index + 1);
-        images[index] = img;
-
-        img.onload = () => {
-          loadedFlags[index] = true;
-          loadedCount++;
-          activeWorkers--;
-          updateLoaderProgress();
-          processQueue();
-        };
-
-        img.onerror = () => {
-          console.warn(`Failed to load frame ${index + 1}`);
-          activeWorkers--;
-          processQueue();
-        };
-      }
-    }
-
-    processQueue();
-  }
-
-  /**
-   * Update Loading Progress UI
-   */
-  function updateLoaderProgress() {
-    const progressPct = Math.round((loadedCount / TOTAL_FRAMES) * 100);
-    loaderPercent.textContent = `${progressPct}%`;
-    loaderBarFill.style.width = `${progressPct}%`;
-    loaderDetails.textContent = `Loading frames: ${loadedCount} / ${TOTAL_FRAMES}`;
-
-    // Dismiss loader smoothly once initial interactive buffer (or 100%) is ready
-    if (!isLoaderDismissed && (loadedCount >= Math.min(36, TOTAL_FRAMES) || loadedCount === TOTAL_FRAMES)) {
-      isLoaderDismissed = true;
-      setTimeout(() => {
-        loader.classList.add('loaded');
-        // Ensure initial frame is drawn
-        drawFrame(renderedFrameIndex >= 0 ? renderedFrameIndex : 0);
-      }, 250);
-    }
-  }
-
-  /**
-   * Initialize Case Study Modal Controller (Reads data-* attributes from clicked button)
-   */
+  // --- Case Study Modal Controller ---
   function initCaseStudyModal() {
     const modal = document.getElementById('case-study-modal');
     const closeBtn = document.getElementById('modal-close-btn');
@@ -369,7 +116,7 @@
       });
     }
 
-    // Close when clicking directly on the dark backdrop outside modal-box
+    // Close when clicking directly on the backdrop outside modal-box
     modal.addEventListener('click', (e) => {
       if (e.target === modal) {
         closeModal();
@@ -384,31 +131,95 @@
     });
   }
 
-  // --- Initialization ---
-  function init() {
-    handleResize();
-    window.addEventListener('resize', handleResize, { passive: true });
-    window.addEventListener('scroll', onScroll, { passive: true });
+  // --- Formspree Contact Form Fetch Submission ---
+  const FORM_ENDPOINT = "https://formspree.io/f/xvkzyblw";
 
-    // Initial state check
-    onScroll();
+  function initContactForm() {
+    const form = document.getElementById('contact-form');
+    const statusEl = document.getElementById('contact-status');
+    const submitBtn = document.getElementById('contact-submit-btn');
+    if (!form || !statusEl) return;
 
-    // Initialize Modal Controller
-    initCaseStudyModal();
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
 
-    // Start loading frames
-    preloadImages();
+      const nameInput = document.getElementById('contact-name');
+      const emailInput = document.getElementById('contact-email');
+      const msgInput = document.getElementById('contact-msg');
+      const urlInput = document.getElementById('contact-url');
+
+      const name = nameInput ? nameInput.value.trim() : '';
+      const email = emailInput ? emailInput.value.trim() : '';
+      const message = msgInput ? msgInput.value.trim() : '';
+      const website = urlInput ? urlInput.value.trim() : '';
+
+      // Validation
+      if (!name) {
+        showStatus('Please enter your name.', 'error');
+        if (nameInput) nameInput.focus();
+        return;
+      }
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!email || !emailRegex.test(email)) {
+        showStatus('Please enter a valid email address.', 'error');
+        if (emailInput) emailInput.focus();
+        return;
+      }
+
+      if (!message || message.length < 10) {
+        showStatus('Please enter a message of at least 10 characters.', 'error');
+        if (msgInput) msgInput.focus();
+        return;
+      }
+
+      // Button loading state
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        const textSpan = submitBtn.querySelector('span');
+        if (textSpan) textSpan.textContent = 'Sending...';
+      }
+
+      try {
+        const response = await fetch(FORM_ENDPOINT, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify({
+            name: name,
+            email: email,
+            website: website,
+            message: message
+          })
+        });
+
+        if (response.ok) {
+          showStatus('Request received. I will reply by email.', 'success');
+          form.reset();
+        } else {
+          showStatus('Something went wrong. Please try again or email me directly at abirhoq99@gmail.com.', 'error');
+        }
+      } catch (err) {
+        showStatus('Unable to send request right now. Please check your connection or email me at abirhoq99@gmail.com.', 'error');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          const textSpan = submitBtn.querySelector('span');
+          if (textSpan) textSpan.textContent = 'Send Request';
+        }
+      }
+    });
+
+    function showStatus(msg, type) {
+      statusEl.textContent = msg;
+      statusEl.style.display = 'block';
+      statusEl.className = 'contact-status-box ' + type;
+    }
   }
 
-  // Run on DOM ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
-  } else {
-    init();
-  }
-})();
-
-  // --- Mobile Hamburger Menu Handler ---
+  // --- Mobile Hamburger Menu ---
   function initMobileMenu() {
     const hamburgerBtn = document.getElementById('hamburger-toggle');
     const mobileDropdown = document.getElementById('mobile-nav-dropdown');
@@ -431,7 +242,7 @@
     });
   }
 
-  // --- Lightweight IntersectionObserver for Fade-Up Motion ---
+  // --- Lightweight Scroll Reveal ---
   function initScrollReveal() {
     const reveals = document.querySelectorAll('.reveal-on-scroll');
     if (!reveals.length) return;
@@ -457,13 +268,20 @@
     reveals.forEach((el) => observer.observe(el));
   }
 
-  // Run initializers
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => {
-      initMobileMenu();
-      initScrollReveal();
-    });
-  } else {
+  // --- Initialization ---
+  function init() {
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+    initActiveNavObserver();
+    initCaseStudyModal();
+    initContactForm();
     initMobileMenu();
     initScrollReveal();
   }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
